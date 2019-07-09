@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+</head>
+<body>
+<form method="post" action="/login">
+    <h2 class="form-signin-heading">登录</h2>
+    <span th:if="${param.error}" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+    <p>
+        <label for="username">用户名</label>
+        <input type="text" id="username" name="username" required autofocus>
+    </p>
+    <p>
+        <label for="password">密码</label>
+        <input type="password" id="password" name="password" required>
+    </p>
+    <button type="submit">登录</button>
+    <hr>
+    <a href="/qqLogin/callback.do">QQ登录</a>
+</form>
+<script>
+function getSmsCode() {
+    var ajax = new XMLHttpRequest();
+    ajax.open('get','/code/sms');
+    ajax.send();
+}
+</script>
+</body>
+</html>
